@@ -20,10 +20,7 @@ gulp.task('browserify',function(){
 		.pipe(source('app.js'))
 		.pipe(buffer())
 		.pipe(sourcemaps.init({loadMaps: true}))
-			.pipe(uglify())
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest("js/"))
-		.pipe(rename({suffix:".min"}))
 		.pipe(gulp.dest("js/"))
 })
 
