@@ -13,36 +13,19 @@
     <!-- STYLESHEETS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- VENDOR SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    <!-- APPLICATION SCRIPTS -->
-    <script src="js/app.js"></script>
-
-    <!-- React SCRIPTS -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.28.2/react-bootstrap.js"></script>
-
-
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.28.2/react-bootstrap.min.js"></script>
-
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.28.2/react-bootstrap.min.js.map"></script>
 
     <body>
+<!--header 
 <div class="jumbotron">
-<div class="row">
-  <div class=".col-xs-12 .col-sm-6 .col-md-8"> 
-  </div>
-   
-</div>
   <h1>AccessibleSF</h1>
-  <p>Welcome to your personal public transportion planning service! </p>
-  </div>
-
-
-
+</div>
+-->
 
     <div class="row">
       <div class="col-md-4">
@@ -55,12 +38,23 @@
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
             </form>
+            <div id="directions">
+                <img src="http://www.dmxzone.com/downloads/images/Image007_21.png">
           </div>
-          <div class="col-md-6" id="directions">
-      <img src="http://www.dmxzone.com/downloads/images/Image007_21.png"></div>
-      </div>
-        </div>
+          </div>
+          
+      <div class="col-md-8" id="map">
+        hey
+      </div> 
 
+    </div>
+     <!-- React SCRIPTS -->
+       <script src="https://fb.me/react-dom-0.14.6.min.js"></script>
+       <script src="https://fb.me/react-dom-0.14.6.min.js"></script>
+       <script type="text/javascript" src="js/app.js"></script>
+       <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkvphlba9OU1smaJQAChDKE9cUxvA-lQ4&callback=initMap">
+    </script>
     </body>
 
 </html>
