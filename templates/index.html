@@ -18,9 +18,9 @@
     <!-- VENDOR SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-
-    <body>
+    <script src="http://maps.googleapis.com/maps/api/js?key={{ key | safe }}"></script>
+  </head>
+  <body>
 <!--header 
 <div class="jumbotron">
   <h1>AccessibleSF</h1>
@@ -44,7 +44,7 @@
           </div>
           
       <div class="col-md-8" id="map">
-        hey
+        {{ key }} gmapskey
       </div> 
 
     </div>
@@ -52,8 +52,7 @@
        <script src="https://fb.me/react-dom-0.14.6.min.js"></script>
        <script src="https://fb.me/react-dom-0.14.6.min.js"></script>
        <script type="text/javascript" src="js/app.js"></script>
-       <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkvphlba9OU1smaJQAChDKE9cUxvA-lQ4&callback=initMap">
+       <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDkvphlba9OU1smaJQAChDKE9cUxvA-lQ4">
     </script>
     </body>
 
