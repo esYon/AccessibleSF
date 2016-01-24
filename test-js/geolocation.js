@@ -1,9 +1,12 @@
-module.exports = function(){
 
+
+module.exports.getUserLocation = function(){
+	var userObj = {}
 	navigator.geolocation.getCurrentPosition(getLocation,getError);
 
 		 function getLocation(obj){
-		 	console.log(obj.coords);
+		 	userObj["lat"] = 55;
+		 	userObj["longi"] = 66;
 
 		 }
 
@@ -11,6 +14,11 @@ module.exports = function(){
 		 	return e;
 
 		 }
+	return userObj;
 
-}
+};
+
+
+
+
 
