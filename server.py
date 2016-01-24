@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, flash, jsonify, url
 from flask import session
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy import update, delete, exc
+import routes
 import os
 
 
@@ -11,9 +12,10 @@ app.secret_key = "###"
 app.config["GMAPS_KEY"]=os.environ["GMAPS_KEY"]
 
 @app.route("/", methods=["GET"])
-def say_hello():
+def main():
+    accessible_MUNI_stops_list = routes.list_accessible_MUNI_stops()
     key = app.config["GMAPS_KEY"]
-    return render_template("index.html", key=key)
+    return render_template("index.html", key=key, good_MUNI=accessible_MUNI_stops_list)
 
 ##############################################################################
 
