@@ -1,62 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
+
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
     <title>AccessibleSF</title>
-    <!-- handlebars 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
-    -->
 
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link href="css/grayscale.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
-    <!-- VENDOR SCRIPTS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
+</head>
 
-    <body>
-<!--header 
-<div class="jumbotron">
-  <h1>AccessibleSF</h1>
-</div>
--->
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-    <div class="row">
-      <div class="col-md-4">
-        <form>
-          <div class="form-group" id="intake">
-              <label for="startpoint">Current Location</label>
-              <input type="text" class="form-control" id="start" placeholder="Where are you starting from today?">
-              <label for="endpoint">Destination</label>
-              <input type="text" class="form-control" id="endpoint" placeholder="Where would you like to go?">
-              <br>
-              <button type="submit" class="btn btn-default">Submit</button>
+            <h1>AccessibleSF</h1>
+            <h3>Providing accessibility for everyone</h3>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="row">
+              <div class="col-md-4">
+                <form>
+                  <div class="form-group" id="intake">
+                      <label for="startpoint">Current Location</label>
+                      <input type="text" class="form-control" id="start" placeholder="Where are you starting from today?">
+                      <label for="endpoint">Destination</label>
+                      <input type="text" class="form-control" id="endpoint" placeholder="Where would you like to go?">
+                      <br>
+                      <button type="submit" class="btn btn-default">Submit</button>
+                      </div>
+
+                    </form>
+                    <div id="directions">
+                        <ul>
+                          <li>blah</li>
+                        </ul>
+                  </div>
+                  </div>
+
+              <div class="col-md-8" id="map">
+
               </div>
-              
-            </form>
-            <div id="directions">
-                <img src="http://www.dmxzone.com/downloads/images/Image007_21.png">
-          </div>
-          </div>
-          
-      <div class="col-md-8" id="map" style="width:500px;height:380px;">
-       
-      </div> 
 
-    </div>
-     <!-- React SCRIPTS -->
-       <script src="https://fb.me/react-dom-0.14.6.min.js"></script>
-       <script src="https://fb.me/react-dom-0.14.6.min.js"></script>
-       <script type="text/javascript" src="js/app.js"></script>
-       <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkvphlba9OU1smaJQAChDKE9cUxvA-lQ4&callback=initMap">
-    </script>
-    </body>
+            </div>
+             <!-- React SCRIPTS -->
+               <script src="https://fb.me/react-dom-0.14.6.min.js"></script>
+               <script src="https://fb.me/react-dom-0.14.6.min.js"></script>
+               <script type="text/javascript" src="js/app.js"></script>
+               <script async defer
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkvphlba9OU1smaJQAChDKE9cUxvA-lQ4&callback=initMap">
+            </script>
+    <footer>
+        <div class="container text-center">
+            <p>Copyright &copy; Team AccessibleSF 2016</p>
+        </div>
+    </footer>
 
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/grayscale.js"></script>
+
+</body>
 </html>
