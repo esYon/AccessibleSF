@@ -8,10 +8,12 @@ import os
 app = Flask(__name__)
 
 app.secret_key = "###"
+app.config["GMAPS_KEY"]=os.environ["GMAPS_KEY"]
 
 @app.route("/", methods=["GET"])
 def say_hello():
-    return """ hihi """
+    key = app.config["GMAPS_KEY"]
+    return render_template("index.html", key=key)
 
 ##############################################################################
 
