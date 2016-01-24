@@ -11,18 +11,6 @@ var rename = require('gulp-rename');
 var autoprefixer = require('gulp-autoprefixer');
 var sourcemaps = require("gulp-sourcemaps");
 
-gulp.task('browserify',function(){
-	var b = browserify({
-		entries: './test-js/app.js',
-		debug: true
-	})
-	return b.bundle()
-		.pipe(source('app.js'))
-		.pipe(buffer())
-		.pipe(sourcemaps.init({loadMaps: true}))
-		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest("js/"))
-})
 
 gulp.task('styles',function(){
 	return gulp.src("sass/**/*.scss")
