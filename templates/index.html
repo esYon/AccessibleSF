@@ -2,61 +2,171 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SFAccessible</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
-    <title>AccessibleSF</title>
-    <!-- handlebars 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
-    -->
+    <style>
+      html { height: 100% }
+      body { height: 100%; margin: 0px; padding: 0px }
+      #container { width: 100%; height: 100% }
+      #nav { z-index: 100; position: absolute; 
+             margin: 10px 0px 0px 200px; background-color: #fff; 
+             border: 1px #000 Solid; padding: 5px; }
+      #map_canvas { width: 100%; height: 100% }
+    </style>
 
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+      var directionDisplay;
+      var directionsService = new google.maps.DirectionsService();
+      var map;
+      var origin = null;
+      var destination = null;
+      var waypoints = [];
+      var markers = [];
+      var directionsVisible = false;
 
-    <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+      function initialize() {
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        var sanfran = new google.maps.LatLng(37.7749295, -122.4167);
+        var myOptions = {
+          zoom:13,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          center: sanfran
+        }
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        directionsDisplay.setMap(map);
+        directionsDisplay.setPanel(document.getElementById("directionsPanel"));
+        
+        google.maps.event.addListener(map, 'click', function(event) {
+          if (origin == null) {
+            origin = event.latLng;
+            addMarker(origin);
+          } else if (destination == null) {
+            destination = event.latLng;
+            addMarker(destination);
+          } else {
+            if (waypoints.length < 9) {
+              waypoints.push({ location: destination, stopover: true });
+              destination = event.latLng;
+              addMarker(destination);
+            } else {
+              alert("Maximum number of waypoints reached");
+            }
+          }
+        });
+      }
 
-    <link rel="stylesheet" href="css/style.css">
+      function addMarker(latlng) {
+        markers.push(new google.maps.Marker({
+          position: latlng, 
+          map: map,
+          icon: "http://maps.google.com/mapfiles/marker" + String.fromCharCode(markers.length + 65) + ".png"
+        }));    
+      }
 
-    <!-- VENDOR SCRIPTS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?key={{ key | safe }}"></script>
-  </head>
-  <body>
-<!--header 
-<div class="jumbotron">
-  <h1>AccessibleSF</h1>
-</div>
--->
-  {% for stop in good_MUNI %}
-    {{ stop }}
-  {% endfor %}
-
-    <div class="row">
-      <div class="col-md-4">
-        <form>
-          <div class="form-group">
-              <label for="startpoint">Current Location</label>
-              <input type="text" class="form-control" id="start" placeholder="Where are you starting from today?">
-              <label for="endpoint">Destination</label>
-              <input type="text" class="form-control" id="endpoint" placeholder="Starting Travel from">
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-            <div id="directions">
-                <img src="http://www.dmxzone.com/downloads/images/Image007_21.png">
-          </div>
-          </div>
-          
-      <div class="col-md-8" id="map">
-        {{ key }} gmapskey
-      </div> 
-
-    </div>
-     <!-- React SCRIPTS -->
-       <script src="https://fb.me/react-dom-0.14.6.min.js"></script>
-       <script src="https://fb.me/react-dom-0.14.6.min.js"></script>
-       <script type="text/javascript" src="js/app.js"></script>
-       <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDkvphlba9OU1smaJQAChDKE9cUxvA-lQ4">
+      function calcRoute() {
+        if (origin == null) {
+          alert("Click on the map to add a start point");
+          return;
+        }
+        
+        if (destination == null) {
+          alert("Click on the map to add an end point");
+          return;
+        }
+        
+        var mode;
+        switch (document.getElementById("mode").value) {
+          case "transit":
+            mode = google.maps.DirectionsTravelMode.TRANSIT;
+            break;
+          case "walking":
+            mode = google.maps.DirectionsTravelMode.WALKING;
+            break;
+        }
+        
+        var request = {
+            origin: origin,
+            destination: destination,
+            waypoints: waypoints,
+            travelMode: mode,
+            optimizeWaypoints: document.getElementById('optimize').checked
+        };
+        
+        directionsService.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+          }
+        });
+        
+        clearMarkers();
+        directionsVisible = true;
+      }
+      
+      function updateMode() {
+        if (directionsVisible) {
+          calcRoute();
+        }
+      }
+      
+      function clearMarkers() {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(null);
+        }
+      }
+      
+      function clearWaypoints() {
+        markers = [];
+        origin = null;
+        destination = null;
+        waypoints = [];
+        directionsVisible = false;
+      }
+      
+      function reset() {
+        clearMarkers();
+        clearWaypoints();
+        directionsDisplay.setMap(null);
+        directionsDisplay.setPanel(null);
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        directionsDisplay.setMap(map);
+        directionsDisplay.setPanel(document.getElementById("directionsPanel"));    
+      }
     </script>
-    </body>
+  </head>
+  <body align="center"onload="initialize()" style="font-family: sans-serif;">
+    <h1>SFAccessible</h1>
+    <h2>Making transit accessible for everyone.</h2>
 
+    <div id="container">
+      <div id="nav">
+
+        <table style="width: 400px">
+          <tr>
+            <td><input type="checkbox" id="optimize" checked />Optimize</td>
+            <td>
+              <select id="mode" onchange="updateMode()">
+                <option value="transit">Transit</option>
+                <option value="walking">Walking</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="button" value="Reset" onclick="reset()" /></td>
+          </tr>
+          <tr>
+            <td><input type="button" value="Get Directions!" onclick="calcRoute()" /></td>
+            <td></td>
+          </tr>
+        </table>
+      <div style="position:relative; border: 1px; width: 200px;">
+        <div id="directionsPanel" style="overflow: auto"></div>
+      </div>
+      </div>
+      <div id="map_canvas"></div>
+    </div>
+    
+  </body>
 </html>
