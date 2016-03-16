@@ -1,0 +1,59 @@
+// SassySass ------------------------------------------------------------
+
+// ----------------------------------------------------------------------
+  // Utils
+// ----------------------------------------------------------------------
+@import "utils/mixins";
+@import "utils/extends";
+
+// ----------------------------------------------------------------------
+  // Base
+// ----------------------------------------------------------------------
+@import "base/variables";
+@import "base/reset";
+
+// ----------------------------------------------------------------------
+  // Layout
+// ----------------------------------------------------------------------
+@import "layout/grid";
+
+// ----------------------------------------------------------------------
+  // Modules
+// ----------------------------------------------------------------------
+
+// ----------------------------------------------------------------------
+  // Themes
+// ----------------------------------------------------------------------
+
+
+body{
+background: rgba(237,171,104,1);
+background: -moz-linear-gradient(-45deg, rgba(237,171,104,1) 0%, rgba(249,104,72,1) 100%);
+background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(237,171,104,1)), color-stop(100%, rgba(249,104,72,1)));
+background: -webkit-linear-gradient(-45deg, rgba(237,171,104,1) 0%, rgba(249,104,72,1) 100%);
+background: -o-linear-gradient(-45deg, rgba(237,171,104,1) 0%, rgba(249,104,72,1) 100%);
+background: -ms-linear-gradient(-45deg, rgba(237,171,104,1) 0%, rgba(249,104,72,1) 100%);
+background: linear-gradient(135deg, rgba(237,171,104,1) 0%, rgba(249,104,72,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#edab68', endColorstr='#f96848', GradientType=1 );
+background-repeat: no-repeat;
+height: 100%;
+background-attachment: fixed;
+}
+
+form {
+	margin-left: 20px;
+}
+
+.jumbotron {
+	text-align: center;
+}	
+
+#directions {
+	width: 200px;
+  height: 200px;
+ 
+}
+
+#map{
+	height:100%;
+} 
