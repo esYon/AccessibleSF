@@ -12,8 +12,7 @@ app.secret_key = "###"
 @app.route("/", methods=["GET"])
 def main():
     accessible_MUNI_stops_list = routes.list_accessible_MUNI_stops()
-    key = app.config["GMAPS_KEY"]
-    return render_template("index.html", key=key, good_MUNI=accessible_MUNI_stops_list)
+    return render_template("index.html", good_MUNI=accessible_MUNI_stops_list)
 
 ##############################################################################
 
