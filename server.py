@@ -17,9 +17,8 @@ def main():
 ##############################################################################
 
 if __name__ == "__main__":
-    app.debug = True
+    PORT = int(os.environ.get("PORT", 5000))
 
-    app.run()
-
+    app.run(debug=False, host="0.0.0.0", port=PORT)
     # To use the DebugToolbar, uncomment below:
     # DebugToolbarExtension(app)
